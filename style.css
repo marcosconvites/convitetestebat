@@ -1,0 +1,443 @@
+* { box-sizing: border-box; }
+
+:root {
+  --papel: #fbf7ef;
+  --papel-claro: #fffdf8;
+  --ouro: #ae8745;
+  --ouro-claro: #d4b77c;
+  --texto: #654d30;
+  --folha: #929174;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--texto);
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(255,255,255,.9), transparent 54%),
+    linear-gradient(135deg, #f1eadd, var(--papel) 48%, #f2eadc);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  overflow-x: hidden;
+}
+
+.textura {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .17;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
+}
+
+.convite {
+  position: relative;
+  width: min(100% - 30px, 900px);
+  margin: 34px auto 20px;
+  padding: clamp(34px, 6vw, 72px) clamp(18px, 6vw, 72px) 48px;
+  overflow: hidden;
+  background: rgba(255,253,248,.78);
+  border: 1px solid rgba(174,135,69,.48);
+  box-shadow: 0 20px 70px rgba(91,68,36,.10);
+  text-align: center;
+  animation: surgir 1s ease both;
+}
+
+.convite::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(174,135,69,.2);
+  pointer-events: none;
+}
+
+.ramo {
+  position: absolute;
+  z-index: 0;
+  width: clamp(95px, 18vw, 175px);
+  opacity: .67;
+  pointer-events: none;
+}
+.ramo img { display: block; width: 100%; height: auto; object-fit: contain; }
+.ramo-esquerdo { top: 14px; left: 3px; transform: rotate(-5deg); }
+.ramo-direito { top: 14px; right: 3px; transform: rotate(5deg); }
+
+.topo, .contagem, .detalhes, .mensagem-final { position: relative; z-index: 1; }
+
+.pomba {
+  width: 210px;
+  height: auto;
+  margin: 0 auto 8px;
+  position: relative;
+}
+.pomba img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.chamada, .texto-convite, .rotulo {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: .17em;
+  font-size: clamp(11px, 1.8vw, 15px);
+}
+.chamada { margin: 8px 0 14px; }
+h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(31px, 5vw, 48px);
+  line-height: 1.02;
+  letter-spacing: .025em;
+}
+.divisor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto;
+  color: var(--ouro);
+}
+.divisor span { width: 64px; height: 1px; background: var(--ouro-claro); }
+.divisor b { font-size: 26px; font-weight: 400; line-height: 1; }
+.texto-convite { margin-top: 5px; }
+.evento {
+  margin: 8px 0 0;
+  color: var(--ouro);
+  font-size: clamp(42px, 8vw, 76px);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding-left: .22em;
+}
+.preposicao {
+  margin: 10px 0 -2px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+}
+.nome {
+  margin: 0;
+  color: #a47d39;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(49px, 10vw, 88px);
+  line-height: 1.25;
+}
+.raminho-central {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #a3a080;
+  font-size: 29px;
+  margin: 3px 0 30px;
+}
+.raminho-central i { color: var(--ouro); font-size: 14px; font-style: normal; }
+
+.contagem {
+  width: min(100%, 600px);
+  margin: 0 auto 35px;
+  padding: 18px 12px 16px;
+  border-top: 1px solid rgba(174,135,69,.36);
+  border-bottom: 1px solid rgba(174,135,69,.36);
+}
+.rotulo { font-size: 12px; margin-bottom: 13px; }
+.relogio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(7px, 2vw, 18px);
+}
+.relogio div { min-width: 52px; display: flex; flex-direction: column; }
+.relogio strong {
+  color: var(--ouro);
+  font-size: clamp(27px, 5vw, 39px);
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.relogio span {
+  margin-top: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.relogio > b { color: var(--ouro-claro); font-weight: 400; font-size: 25px; padding-bottom: 15px; }
+.frase-contagem { margin: 13px 0 0; font-size: 15px; font-style: italic; }
+
+.detalhes {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  align-items: stretch;
+  gap: clamp(10px, 2vw, 22px);
+  margin: 0 auto;
+}
+.detalhe { padding: 0 3px; }
+.separador { background: rgba(174,135,69,.55); width: 1px; }
+.icone { height: 58px; margin-bottom: 10px; }
+.icone svg {
+  height: 58px;
+  width: 58px;
+  fill: none;
+  stroke: var(--ouro);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.detalhe-titulo {
+  margin: 0 0 8px;
+  color: var(--ouro);
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: 12px;
+}
+.detalhe-texto {
+  margin: 3px 0;
+  font-size: clamp(15px, 2vw, 19px);
+  line-height: 1.3;
+}
+.detalhe-destaque {
+  margin: 10px 0 0;
+  font-size: 19px;
+  letter-spacing: .07em;
+}
+
+.mensagem-final { margin-top: 30px; }
+.mensagem-final .divisor { margin: 0 auto 13px; }
+.mensagem-final p {
+  margin: 0;
+  font-size: clamp(17px, 2.6vw, 22px);
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  line-height: 1.45;
+}
+.ornamento-final {
+  display: block;
+  margin: 13px 0 4px;
+  color: #a3a080;
+  font-size: 34px;
+}
+.mensagem-final small { font-size: 15px; font-style: italic; }
+
+footer {
+  padding: 0 15px 28px;
+  text-align: center;
+  color: #89734f;
+  font-size: 14px;
+  letter-spacing: .08em;
+}
+
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 620px) {
+  .convite { width: min(100% - 18px, 500px); margin: 10px auto 14px; padding: 42px 15px 32px; }
+  .convite::before { inset: 6px; }
+  .ramo { width: 100px; opacity: .48; }
+  .ramo-esquerdo { top: 5px; }
+  .ramo-direito { top: 5px; }
+  .pomba { width: 180px; height: auto; margin-bottom: 7px; }
+  .chamada { max-width: 270px; margin: 5px auto 12px; line-height: 1.6; }
+  .evento { letter-spacing: .15em; padding-left: .15em; }
+  .nome { font-size: clamp(47px, 12vw, 68px); }
+  .raminho-central { margin-bottom: 22px; }
+  .detalhes { grid-template-columns: 1fr; gap: 16px; }
+  .separador { width: 76px; height: 1px; margin: 0 auto; }
+  .detalhe { padding: 0 12px 3px; }
+  .detalhe + .detalhe { padding-top: 1px; }
+  .icone { height: 48px; margin-bottom: 4px; }
+  .icone svg { width: 48px; height: 48px; }
+  .detalhe-titulo { margin-bottom: 4px; }
+  .detalhe-texto { font-size: 18px; }
+  .mensagem-final { margin-top: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+/* Controle de música: faz parte do conteúdo e rola junto com o convite */
+.controle-musica {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  width: fit-content;
+  margin: -18px 0 14px auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 7px 13px;
+  border: 1px solid rgba(174,135,69,.55);
+  border-radius: 30px;
+  color: #806333;
+  background: rgba(255,253,248,.94);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  letter-spacing: .03em;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(91,68,36,.07);
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.controle-musica:hover {
+  background: #fffdf8;
+  box-shadow: 0 5px 15px rgba(91,68,36,.12);
+  transform: translateY(-1px);
+}
+.controle-musica:focus-visible {
+  outline: 2px solid var(--ouro);
+  outline-offset: 3px;
+}
+.icone-musica {
+  font-family: Georgia, serif;
+  font-size: 19px;
+  line-height: 1;
+}
+.controle-musica.ativo .icone-musica {
+  animation: pulsar-musica 1.5s ease-in-out infinite;
+}
+@keyframes pulsar-musica {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+@media (max-width: 620px) {
+  .controle-musica {
+    min-height: 34px;
+    margin-top: -26px;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+}
+
+
+/* Controle reposicionado no rodapé do convite.
+   Sem fixed/sticky: ele acompanha a rolagem naturalmente. */
+.area-controle-musica {
+  position: static;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 28px auto 2px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(174,135,69,.25);
+}
+.area-controle-musica .controle-musica {
+  position: static;
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 auto;
+}
+@media (max-width: 620px) {
+  .area-controle-musica {
+    margin-top: 22px;
+    padding-top: 13px;
+  }
+  .area-controle-musica .controle-musica {
+    margin: 0 auto;
+  }
+}
+
+
+/* Botão flutuante: permanece visível enquanto o visitante rola a página */
+.area-controle-musica {
+  position: fixed;
+  z-index: 1000;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  display: block;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  pointer-events: none;
+}
+.area-controle-musica .controle-musica {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+  margin: 0;
+  pointer-events: auto;
+  box-shadow: 0 5px 18px rgba(91,68,36,.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+@media (max-width: 620px) {
+  .area-controle-musica {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+}
+
+
+/* Botões para abrir a localização dos locais no Google Maps */
+.botao-localizacao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 7px 13px;
+  border: 1px solid rgba(174,135,69,.62);
+  border-radius: 24px;
+  color: #806333;
+  background: rgba(255,253,248,.82);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.1;
+  letter-spacing: .035em;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(91,68,36,.06);
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.botao-localizacao span {
+  font-size: 18px;
+  line-height: .8;
+}
+.botao-localizacao:hover {
+  background: #fffdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(91,68,36,.12);
+}
+.botao-localizacao:focus-visible {
+  outline: 2px solid var(--ouro);
+  outline-offset: 3px;
+}
+@media (max-width: 620px) {
+  .botao-localizacao {
+    margin-top: 9px;
+    font-size: 14px;
+  }
+}
+
+/* Identificação da família no convite demonstrativo */
+.familia {
+  position: relative;
+  z-index: 1;
+  margin: 28px auto 0;
+  text-align: center;
+}
+.familia .divisor { margin-bottom: 12px; }
+.familia-titulo {
+  margin: 0 0 5px;
+  color: var(--ouro);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 12px;
+}
+.familia-texto {
+  margin: 0;
+  font-size: clamp(19px, 2.8vw, 24px);
+}
+.familia-legenda {
+  margin: 2px 0 14px;
+  color: #928064;
+  font-size: 13px;
+  font-style: italic;
+}
+.familia-texto.padrinhos { margin-top: 2px; }
